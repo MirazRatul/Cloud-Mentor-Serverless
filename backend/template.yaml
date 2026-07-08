@@ -67,7 +67,7 @@ Resources:
     Properties:
       CodeUri: .
       Handler: src/app.handler
-      FunctionName: !Sub '${AWS::StackName}-api'
+      FunctionName: !Sub '${AWS::StackName}-api-v2'
       Description: CloudMentor Lambda API
       Policies:
         - AWSLambdaBasicExecutionRole
@@ -141,7 +141,7 @@ Resources:
   CloudMentorFunctionLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: !Sub '/aws/lambda/${AWS::StackName}-api'
+      LogGroupName: !Sub '/aws/lambda/${AWS::StackName}-api-v2'
       RetentionInDays: 14
 
   CloudMentorTable:
