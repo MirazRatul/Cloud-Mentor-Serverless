@@ -37,7 +37,7 @@ Globals:
         OPENAI_API_KEY: !Ref OpenAiApiKey
         OPENAI_MODEL: !Ref OpenAiModel
         AI_MODE: !Ref AiMode
-        TABLE_NAME: !Ref CloudMentorTable
+        TABLE_NAME: !Ref CloudMentorTableV2
         MATERIALS_BUCKET: !Ref CloudMentorMaterialsBucketV2
         CORS_ORIGIN: !Ref CorsOrigin
         STORAGE_MODE: s3
@@ -72,7 +72,7 @@ Resources:
       Policies:
         - AWSLambdaBasicExecutionRole
         - DynamoDBCrudPolicy:
-            TableName: !Ref CloudMentorTable
+            TableName: !Ref CloudMentorTableV2
         - S3CrudPolicy:
             BucketName: !Ref CloudMentorMaterialsBucketV2
       Events:
@@ -144,7 +144,7 @@ Resources:
       LogGroupName: !Sub '/aws/lambda/${AWS::StackName}-api-v2'
       RetentionInDays: 14
 
-  CloudMentorTable:
+  CloudMentorTableV2:
     Type: AWS::DynamoDB::Table
     Properties:
       BillingMode: PAY_PER_REQUEST
@@ -193,7 +193,7 @@ Outputs:
     Value: !Sub 'https://${CloudMentorHttpApi}.execute-api.${AWS::Region}.amazonaws.com'
   TableName:
     Description: DynamoDB table name
-    Value: !Ref CloudMentorTable
+    Value: !Ref CloudMentorTableV2
   MaterialsBucketName:
     Description: Private S3 bucket for uploaded CloudMentor study materials
     Value: !Ref CloudMentorMaterialsBucketV2
