@@ -38,7 +38,7 @@ Globals:
         OPENAI_MODEL: !Ref OpenAiModel
         AI_MODE: !Ref AiMode
         TABLE_NAME: !Ref CloudMentorTable
-        MATERIALS_BUCKET: !Ref CloudMentorMaterialsBucket
+        MATERIALS_BUCKET: !Ref CloudMentorMaterialsBucketV2
         CORS_ORIGIN: !Ref CorsOrigin
         STORAGE_MODE: s3
 
@@ -74,7 +74,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref CloudMentorTable
         - S3CrudPolicy:
-            BucketName: !Ref CloudMentorMaterialsBucket
+            BucketName: !Ref CloudMentorMaterialsBucketV2
       Events:
         Health:
           Type: HttpApi
@@ -161,7 +161,7 @@ Resources:
       SSESpecification:
         SSEEnabled: true
 
-  CloudMentorMaterialsBucket:
+  CloudMentorMaterialsBucketV2:
     Type: AWS::S3::Bucket
     Properties:
       PublicAccessBlockConfiguration:
@@ -196,4 +196,4 @@ Outputs:
     Value: !Ref CloudMentorTable
   MaterialsBucketName:
     Description: Private S3 bucket for uploaded CloudMentor study materials
-    Value: !Ref CloudMentorMaterialsBucket
+    Value: !Ref CloudMentorMaterialsBucketV2
