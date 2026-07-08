@@ -62,7 +62,7 @@ Resources:
           - OPTIONS
         MaxAge: 600
 
-  CloudMentorFunction:
+  CloudMentorFunctionV2:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: .
